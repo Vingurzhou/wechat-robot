@@ -1,0 +1,25 @@
+syntax = "v1"
+
+type Request {
+	Name string `path:"name,options=you|me"`
+}
+
+type Response {
+	Message string `json:"message"`
+}
+
+service bot-api {
+	@handler BotHandler
+	get /from/:name (Request) returns (Response)
+}
+
+@server (
+	prefix:     /v1
+	group:      normal
+	middleware: CallbackMiddleware
+)
+service bot-api {
+	@handler CallbackHandler
+	post /callback
+}
+
