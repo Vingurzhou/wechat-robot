@@ -8,6 +8,11 @@ type Response {
 	Message string `json:"message"`
 }
 
+type FetchContactsListReq {
+	appId                    string `json:"appId"`
+}
+
+/////////////////////////////////////////////////////////////////////////////////////
 service bot-api {
 	@handler BotHandler
 	get /from/:name (Request) returns (Response)
@@ -21,5 +26,17 @@ service bot-api {
 service bot-api {
 	@handler CallbackHandler
 	post /callback
+
+	@handler Sync
+	post /contacts/fetchContactsList
+}
+
+@server (
+	prefix: /v1
+	group:  logic
+)
+service bot-api {
+	@handler FetchContactsList
+	post /fetchContactsList (FetchContactsListReq)
 }
 
