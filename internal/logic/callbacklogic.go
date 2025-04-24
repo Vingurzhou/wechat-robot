@@ -27,7 +27,7 @@ func NewCallbackLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Callback
 func (l *CallbackLogic) Callback(req *types.CallBackReq) error {
 	// todo: add your logic here and delete this line
 	msg := &model.Msg{
-		MsgID:        0,
+		MsgID:        int32(req.Data.MsgID),
 		FromUserName: req.Data.FromUserName.String,
 		ToUserName:   req.Data.ToUserName.String,
 		MsgType:      int32(req.Data.MsgType),

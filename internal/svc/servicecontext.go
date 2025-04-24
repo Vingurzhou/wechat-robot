@@ -6,10 +6,14 @@ import (
 	"bot/internal/dao/query"
 	"bot/internal/middleware"
 
+	"context"
+	"fmt"
+
 	"github.com/Vingurzhou/pkg/db"
 	"github.com/Vingurzhou/pkg/httpz"
 	"github.com/robfig/cron/v3"
 	"github.com/zeromicro/go-zero/rest"
+	"google.golang.org/genai"
 	"gorm.io/driver/sqlite"
 )
 
@@ -20,6 +24,7 @@ type ServiceContext struct {
 	MsgChannel         chan *model.Msg
 	HttpCli            *httpz.WrapperHttpCli
 	Cron               *cron.Cron
+	GenAICli           *genai.Client
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
@@ -33,5 +38,18 @@ func NewServiceContext(c config.Config) *ServiceContext {
 		Cron: cron.New(cron.WithChain(
 			cron.Recover(cron.DefaultLogger),
 		)),
+		GenAICli: NewGenAICLli(c.GenAI.ApiKey),
 	}
+}
+
+func NewGenAICLli(apiKey string) *genai.Client {
+	ctx := context.Background()
+	cli, err := genai.NewClient(ctx, &genai.ClientConfig{
+		APIKey:  apiKey,
+		Backend: genai.BackendGeminiAPI,
+	})
+	if err != nil {
+		fmt.Println(err)
+	}
+	return cli
 }

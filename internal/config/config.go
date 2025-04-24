@@ -9,4 +9,7 @@ type Config struct {
 		Token string
 		AppId string
 	}
+	GenAI struct {
+		ApiKey string
+	}
 }
