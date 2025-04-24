@@ -15,6 +15,7 @@ type MsgConsumer struct {
 
 func NewMsgConsumer(context context.Context, serverCtx *svc.ServiceContext) Consumer {
 	return &MsgConsumer{
+		Logger: logx.WithContext(context),
 		ctx:    context,
 		svcCtx: serverCtx,
 	}
@@ -22,7 +23,14 @@ func NewMsgConsumer(context context.Context, serverCtx *svc.ServiceContext) Cons
 
 // Consume implements Consumer.
 func (m *MsgConsumer) Consume() error {
-	msg := <-m.svcCtx.MsgChannel
-	m.Info(msg)
-	return nil
+	for {
+		select {
+		case msg := <-m.svcCtx.MsgChannel:
+			if msg != nil {
+				m.Infof("%+v", msg)
+			}
+		case <-m.ctx.Done():
+			return nil
+		}
+	}
 }

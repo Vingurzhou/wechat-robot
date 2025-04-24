@@ -3,6 +3,37 @@
 
 package types
 
+type CallBackReq struct {
+	TypeName string `json:"TypeName"`
+	Appid    string `json:"Appid"`
+	Data     Data   `json:"Data"`
+	Wxid     string `json:"Wxid"`
+}
+
+type Content struct {
+	String string `json:"string"`
+}
+
+type Data struct {
+	MsgID        int64   `json:"MsgId"`
+	FromUserName Content `json:"FromUserName"`
+	ToUserName   Content `json:"ToUserName"`
+	MsgType      int64   `json:"MsgType"`
+	Content      Content `json:"Content"`
+	Status       int64   `json:"Status"`
+	ImgStatus    int64   `json:"ImgStatus"`
+	ImgBuf       ImgBuf  `json:"ImgBuf"`
+	CreateTime   int64   `json:"CreateTime"`
+	MsgSource    string  `json:"MsgSource"`
+	PushContent  string  `json:"PushContent"`
+	NewMsgID     float64 `json:"NewMsgId"`
+	MsgSeq       int64   `json:"MsgSeq"`
+}
+
+type ImgBuf struct {
+	ILen int64 `json:"iLen"`
+}
+
 type Request struct {
 	Name string `path:"name,options=you|me"`
 }

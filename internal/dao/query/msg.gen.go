@@ -28,14 +28,22 @@ func newMsg(db *gorm.DB, opts ...gen.DOOption) msg {
 	tableName := _msg.msgDo.TableName()
 	_msg.ALL = field.NewAsterisk(tableName)
 	_msg.ID = field.NewInt32(tableName, "id")
-	_msg.MessageID = field.NewString(tableName, "message_id")
-	_msg.CallbackURL = field.NewString(tableName, "callback_url")
-	_msg.Status = field.NewString(tableName, "status")
-	_msg.Payload = field.NewString(tableName, "payload")
-	_msg.CreatedAt = field.NewTime(tableName, "created_at")
-	_msg.UpdatedAt = field.NewTime(tableName, "updated_at")
-	_msg.RetryCount = field.NewInt32(tableName, "retry_count")
-	_msg.ErrorMessage = field.NewString(tableName, "error_message")
+	_msg.MsgID = field.NewInt32(tableName, "MsgId")
+	_msg.FromUserName = field.NewString(tableName, "FromUserName")
+	_msg.ToUserName = field.NewString(tableName, "ToUserName")
+	_msg.MsgType = field.NewInt32(tableName, "MsgType")
+	_msg.Content = field.NewString(tableName, "Content")
+	_msg.Status = field.NewInt32(tableName, "Status")
+	_msg.ImgStatus = field.NewInt32(tableName, "ImgStatus")
+	_msg.ImgBufILen = field.NewInt32(tableName, "ImgBuf_iLen")
+	_msg.CreateTime = field.NewInt32(tableName, "CreateTime")
+	_msg.MsgSource = field.NewString(tableName, "MsgSource")
+	_msg.PushContent = field.NewString(tableName, "PushContent")
+	_msg.NewMsgID = field.NewInt32(tableName, "NewMsgId")
+	_msg.MsgSeq = field.NewInt32(tableName, "MsgSeq")
+	_msg.Wxid = field.NewString(tableName, "Wxid")
+	_msg.Appid = field.NewString(tableName, "Appid")
+	_msg.TypeName = field.NewString(tableName, "TypeName")
 
 	_msg.fillFieldMap()
 
@@ -47,14 +55,22 @@ type msg struct {
 
 	ALL          field.Asterisk
 	ID           field.Int32
-	MessageID    field.String
-	CallbackURL  field.String
-	Status       field.String
-	Payload      field.String
-	CreatedAt    field.Time
-	UpdatedAt    field.Time
-	RetryCount   field.Int32
-	ErrorMessage field.String
+	MsgID        field.Int32
+	FromUserName field.String
+	ToUserName   field.String
+	MsgType      field.Int32
+	Content      field.String
+	Status       field.Int32
+	ImgStatus    field.Int32
+	ImgBufILen   field.Int32
+	CreateTime   field.Int32
+	MsgSource    field.String
+	PushContent  field.String
+	NewMsgID     field.Int32
+	MsgSeq       field.Int32
+	Wxid         field.String
+	Appid        field.String
+	TypeName     field.String
 
 	fieldMap map[string]field.Expr
 }
@@ -72,14 +88,22 @@ func (m msg) As(alias string) *msg {
 func (m *msg) updateTableName(table string) *msg {
 	m.ALL = field.NewAsterisk(table)
 	m.ID = field.NewInt32(table, "id")
-	m.MessageID = field.NewString(table, "message_id")
-	m.CallbackURL = field.NewString(table, "callback_url")
-	m.Status = field.NewString(table, "status")
-	m.Payload = field.NewString(table, "payload")
-	m.CreatedAt = field.NewTime(table, "created_at")
-	m.UpdatedAt = field.NewTime(table, "updated_at")
-	m.RetryCount = field.NewInt32(table, "retry_count")
-	m.ErrorMessage = field.NewString(table, "error_message")
+	m.MsgID = field.NewInt32(table, "MsgId")
+	m.FromUserName = field.NewString(table, "FromUserName")
+	m.ToUserName = field.NewString(table, "ToUserName")
+	m.MsgType = field.NewInt32(table, "MsgType")
+	m.Content = field.NewString(table, "Content")
+	m.Status = field.NewInt32(table, "Status")
+	m.ImgStatus = field.NewInt32(table, "ImgStatus")
+	m.ImgBufILen = field.NewInt32(table, "ImgBuf_iLen")
+	m.CreateTime = field.NewInt32(table, "CreateTime")
+	m.MsgSource = field.NewString(table, "MsgSource")
+	m.PushContent = field.NewString(table, "PushContent")
+	m.NewMsgID = field.NewInt32(table, "NewMsgId")
+	m.MsgSeq = field.NewInt32(table, "MsgSeq")
+	m.Wxid = field.NewString(table, "Wxid")
+	m.Appid = field.NewString(table, "Appid")
+	m.TypeName = field.NewString(table, "TypeName")
 
 	m.fillFieldMap()
 
@@ -104,16 +128,24 @@ func (m *msg) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (m *msg) fillFieldMap() {
-	m.fieldMap = make(map[string]field.Expr, 9)
+	m.fieldMap = make(map[string]field.Expr, 17)
 	m.fieldMap["id"] = m.ID
-	m.fieldMap["message_id"] = m.MessageID
-	m.fieldMap["callback_url"] = m.CallbackURL
-	m.fieldMap["status"] = m.Status
-	m.fieldMap["payload"] = m.Payload
-	m.fieldMap["created_at"] = m.CreatedAt
-	m.fieldMap["updated_at"] = m.UpdatedAt
-	m.fieldMap["retry_count"] = m.RetryCount
-	m.fieldMap["error_message"] = m.ErrorMessage
+	m.fieldMap["MsgId"] = m.MsgID
+	m.fieldMap["FromUserName"] = m.FromUserName
+	m.fieldMap["ToUserName"] = m.ToUserName
+	m.fieldMap["MsgType"] = m.MsgType
+	m.fieldMap["Content"] = m.Content
+	m.fieldMap["Status"] = m.Status
+	m.fieldMap["ImgStatus"] = m.ImgStatus
+	m.fieldMap["ImgBuf_iLen"] = m.ImgBufILen
+	m.fieldMap["CreateTime"] = m.CreateTime
+	m.fieldMap["MsgSource"] = m.MsgSource
+	m.fieldMap["PushContent"] = m.PushContent
+	m.fieldMap["NewMsgId"] = m.NewMsgID
+	m.fieldMap["MsgSeq"] = m.MsgSeq
+	m.fieldMap["Wxid"] = m.Wxid
+	m.fieldMap["Appid"] = m.Appid
+	m.fieldMap["TypeName"] = m.TypeName
 }
 
 func (m msg) clone(db *gorm.DB) msg {

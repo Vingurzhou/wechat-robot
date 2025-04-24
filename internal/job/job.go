@@ -2,17 +2,9 @@ package job
 
 import (
 	"bot/internal/svc"
-	"context"
 	"fmt"
-
-	"github.com/zeromicro/go-zero/core/logx"
 )
 
-type CheckLoginJob struct {
-	logx.Logger
-	ctx    context.Context
-	svcCtx *svc.ServiceContext
-}
 type GetTokenIdResp struct {
 	Ret  int64  `json:"ret"`
 	Msg  string `json:"msg"`
@@ -35,10 +27,10 @@ type Job interface {
 }
 
 func RegisterJobs(svcCtx *svc.ServiceContext) {
-	ctx := context.Background()
+	// ctx := context.Background()
 
 	// NewLoginJob(ctx, svcCtx).Run()
-	svcCtx.Cron.AddFunc("@every 5s", NewCheckLoginJob(ctx, svcCtx).Run)
+	// svcCtx.Cron.AddFunc("@every 5s", NewCheckLoginJob(ctx, svcCtx).Run)
 
 	fmt.Printf("Starting job at %s\n", svcCtx.Config.Host)
 	svcCtx.Cron.Start()

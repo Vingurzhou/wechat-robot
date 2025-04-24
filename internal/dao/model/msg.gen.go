@@ -4,23 +4,27 @@
 
 package model
 
-import (
-	"time"
-)
-
 const TableNameMsg = "msg"
 
 // Msg mapped from table <msg>
 type Msg struct {
-	ID           int32     `gorm:"column:id;primaryKey" json:"id"`
-	MessageID    string    `gorm:"column:message_id;not null" json:"message_id"`
-	CallbackURL  string    `gorm:"column:callback_url;not null" json:"callback_url"`
-	Status       string    `gorm:"column:status;not null;default:'pending'" json:"status"`
-	Payload      string    `gorm:"column:payload" json:"payload"`
-	CreatedAt    time.Time `gorm:"column:created_at;default:CURRENT_TIMESTAMP" json:"created_at"`
-	UpdatedAt    time.Time `gorm:"column:updated_at;default:CURRENT_TIMESTAMP" json:"updated_at"`
-	RetryCount   int32     `gorm:"column:retry_count" json:"retry_count"`
-	ErrorMessage string    `gorm:"column:error_message" json:"error_message"`
+	ID           int32  `gorm:"column:id;primaryKey" json:"id"`
+	MsgID        int32  `gorm:"column:MsgId" json:"MsgId"`
+	FromUserName string `gorm:"column:FromUserName" json:"FromUserName"`
+	ToUserName   string `gorm:"column:ToUserName" json:"ToUserName"`
+	MsgType      int32  `gorm:"column:MsgType" json:"MsgType"`
+	Content      string `gorm:"column:Content" json:"Content"`
+	Status       int32  `gorm:"column:Status" json:"Status"`
+	ImgStatus    int32  `gorm:"column:ImgStatus" json:"ImgStatus"`
+	ImgBufILen   int32  `gorm:"column:ImgBuf_iLen" json:"ImgBuf_iLen"`
+	CreateTime   int32  `gorm:"column:CreateTime" json:"CreateTime"`
+	MsgSource    string `gorm:"column:MsgSource" json:"MsgSource"`
+	PushContent  string `gorm:"column:PushContent" json:"PushContent"`
+	NewMsgID     int32  `gorm:"column:NewMsgId" json:"NewMsgId"`
+	MsgSeq       int32  `gorm:"column:MsgSeq" json:"MsgSeq"`
+	Wxid         string `gorm:"column:Wxid" json:"Wxid"`
+	Appid        string `gorm:"column:Appid" json:"Appid"`
+	TypeName     string `gorm:"column:TypeName" json:"TypeName"`
 }
 
 // TableName Msg's table name
