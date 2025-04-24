@@ -3,5 +3,7 @@ Host: 0.0.0.0
 Port: 1001
 DSN: "bot.db"
 GEWE:
-  token:
-  appId:
+  token: 447d53fdf6354f1791531049fdba865c
+  appId: wx_6UI6kq1iECVFmp5pqQBp4
+LOG:
+  stat: false

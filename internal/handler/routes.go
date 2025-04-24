@@ -6,7 +6,6 @@ package handler
 import (
 	"net/http"
 
-	normal "bot/internal/handler/normal"
 	"bot/internal/svc"
 
 	"github.com/zeromicro/go-zero/rest"
@@ -30,7 +29,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				{
 					Method:  http.MethodPost,
 					Path:    "/callback",
-					Handler: normal.CallbackHandler(serverCtx),
+					Handler: CallbackHandler(serverCtx),
 				},
 			}...,
 		),

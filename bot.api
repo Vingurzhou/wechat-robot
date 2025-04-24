@@ -15,11 +15,12 @@ service bot-api {
 }
 
 @server (
-	prefix:     /v1
-	group:      normal
+	prefix: /v1
+	// group:      msg
 	middleware: CallbackMiddleware
 )
 service bot-api {
 	@handler CallbackHandler
 	post /callback
 }
+

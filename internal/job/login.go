@@ -6,6 +6,7 @@ import (
 	"context"
 	"encoding/base64"
 	"encoding/json"
+	"fmt"
 	"os"
 	"strings"
 
@@ -40,7 +41,7 @@ func (j *LoginJob) Run() {
 	//	    "appId": ""
 	// }'
 	resp, err = j.svcCtx.HttpCli.Do("http://127.0.0.1:2531/v2/api/login/getLoginQrCode", "POST",
-		`{"appId": ""}`,
+		fmt.Sprintf(`{"appId": "%s"}`, j.svcCtx.Config.GEWE.AppId),
 		map[string]string{
 			"X-GEWE-TOKEN": j.svcCtx.Config.GEWE.Token,
 			"Content-Type": "application/json",
@@ -55,6 +56,9 @@ func (j *LoginJob) Run() {
 		j.Error(err)
 		return
 	}
+	j.svcCtx.Config.GEWE.AppId = getLoginQrCodeResp.Data.AppID
+	j.Info(j.svcCtx.Config.GEWE.AppId)
+	j.Info(getLoginQrCodeResp.Data.UUID)
 	list := strings.Split(getLoginQrCodeResp.Data.QrImgBase64, ",")
 	if len(list) != 2 {
 		j.Error("out of index,关闭代理")

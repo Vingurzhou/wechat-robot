@@ -1,4 +1,4 @@
-package normal
+package logic
 
 import (
 	"context"
