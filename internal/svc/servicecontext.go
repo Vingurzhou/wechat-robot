@@ -5,9 +5,10 @@ import (
 	"bot/internal/dao/model"
 	"bot/internal/dao/query"
 	"bot/internal/middleware"
-	"net/http"
 
 	"github.com/Vingurzhou/pkg/db"
+	"github.com/Vingurzhou/pkg/httpz"
+	"github.com/robfig/cron/v3"
 	"github.com/zeromicro/go-zero/rest"
 	"gorm.io/driver/sqlite"
 )
@@ -17,7 +18,8 @@ type ServiceContext struct {
 	CallbackMiddleware rest.Middleware
 	Query              *query.Query
 	MsgChannel         chan *model.Msg
-	HttpCli            *http.Client
+	HttpCli            *httpz.WrapperHttpCli
+	Cron               *cron.Cron
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
@@ -27,6 +29,9 @@ func NewServiceContext(c config.Config) *ServiceContext {
 		CallbackMiddleware: middleware.NewCallbackMiddleware().Handle,
 		Query:              query.Use(db.NewGormDB(sqlite.Open(c.DSN))),
 		MsgChannel:         make(chan *model.Msg, 10),
-		HttpCli:            &http.Client{},
+		HttpCli:            httpz.NewHttpCli(),
+		Cron: cron.New(cron.WithChain(
+			cron.Recover(cron.DefaultLogger),
+		)),
 	}
 }

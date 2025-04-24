@@ -3,9 +3,7 @@ package normal
 import (
 	"context"
 
-	"bot/internal/dao/model"
 	"bot/internal/svc"
-
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
@@ -24,19 +22,7 @@ func NewCallbackLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Callback
 }
 
 func (l *CallbackLogic) Callback() error {
-	msg := &model.Msg{
-		MessageID:    "",
-		CallbackURL:  "",
-		Status:       "",
-		Payload:      "",
-		RetryCount:   0,
-		ErrorMessage: "",
-	}
-	err := l.svcCtx.Query.WithContext(l.ctx).Msg.Create(msg)
-	if err != nil {
-		l.Error(err)
-		return err
-	}
-	l.svcCtx.MsgChannel <- msg
+	// todo: add your logic here and delete this line
+
 	return nil
 }

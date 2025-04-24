@@ -6,7 +6,6 @@ package handler
 import (
 	"net/http"
 
-	logic "bot/internal/handler/logic"
 	normal "bot/internal/handler/normal"
 	"bot/internal/svc"
 
@@ -25,17 +24,6 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 	)
 
 	server.AddRoutes(
-		[]rest.Route{
-			{
-				Method:  http.MethodPost,
-				Path:    "/fetchContactsList",
-				Handler: logic.FetchContactsListHandler(serverCtx),
-			},
-		},
-		rest.WithPrefix("/v1"),
-	)
-
-	server.AddRoutes(
 		rest.WithMiddlewares(
 			[]rest.Middleware{serverCtx.CallbackMiddleware},
 			[]rest.Route{
@@ -43,11 +31,6 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					Method:  http.MethodPost,
 					Path:    "/callback",
 					Handler: normal.CallbackHandler(serverCtx),
-				},
-				{
-					Method:  http.MethodPost,
-					Path:    "/contacts/fetchContactsList",
-					Handler: normal.SyncHandler(serverCtx),
 				},
 			}...,
 		),

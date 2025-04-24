@@ -3,12 +3,6 @@
 
 package types
 
-type FetchContactsListReq struct {
-	AppId                    string `json:"appId"`
-	XGEWETOKEN               string `header:"X-GEWE-TOKEN"`
-	AuthorizContentTypeation string `header:"Content-Type"`
-}
-
 type Request struct {
 	Name string `path:"name,options=you|me"`
 }

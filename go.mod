@@ -3,7 +3,8 @@ module bot
 go 1.21.0
 
 require (
-	github.com/Vingurzhou/pkg v0.0.0-20250418063037-e189d5466bfc
+	github.com/Vingurzhou/pkg v0.0.0-20250424024448-f592b7fb0782
+	github.com/robfig/cron/v3 v3.0.1
 	github.com/zeromicro/go-zero v1.8.2
 	gorm.io/driver/sqlite v1.5.7
 	gorm.io/gen v0.3.27

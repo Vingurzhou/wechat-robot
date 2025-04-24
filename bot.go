@@ -7,6 +7,7 @@ import (
 	"bot/internal/config"
 	"bot/internal/consumer"
 	"bot/internal/handler"
+	"bot/internal/job"
 	"bot/internal/svc"
 
 	"github.com/zeromicro/go-zero/core/conf"
@@ -25,8 +26,9 @@ func main() {
 	defer server.Stop()
 
 	ctx := svc.NewServiceContext(c)
-	handler.RegisterHandlers(server, ctx)
 	consumer.RegisterConsumers(ctx)
+	job.RegisterJobs(ctx)
+	handler.RegisterHandlers(server, ctx)
 
 	fmt.Printf("Starting server at %s:%d...\n", c.Host, c.Port)
 	server.Start()
