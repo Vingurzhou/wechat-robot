@@ -28,22 +28,22 @@ func newMsg(db *gorm.DB, opts ...gen.DOOption) msg {
 	tableName := _msg.msgDo.TableName()
 	_msg.ALL = field.NewAsterisk(tableName)
 	_msg.ID = field.NewInt32(tableName, "id")
-	_msg.MsgID = field.NewInt32(tableName, "MsgId")
-	_msg.FromUserName = field.NewString(tableName, "FromUserName")
-	_msg.ToUserName = field.NewString(tableName, "ToUserName")
-	_msg.MsgType = field.NewInt32(tableName, "MsgType")
-	_msg.Content = field.NewString(tableName, "Content")
-	_msg.Status = field.NewInt32(tableName, "Status")
-	_msg.ImgStatus = field.NewInt32(tableName, "ImgStatus")
-	_msg.ImgBufILen = field.NewInt32(tableName, "ImgBuf_iLen")
-	_msg.CreateTime = field.NewInt32(tableName, "CreateTime")
-	_msg.MsgSource = field.NewString(tableName, "MsgSource")
-	_msg.PushContent = field.NewString(tableName, "PushContent")
-	_msg.NewMsgID = field.NewInt32(tableName, "NewMsgId")
-	_msg.MsgSeq = field.NewInt32(tableName, "MsgSeq")
-	_msg.Wxid = field.NewString(tableName, "Wxid")
-	_msg.Appid = field.NewString(tableName, "Appid")
-	_msg.TypeName = field.NewString(tableName, "TypeName")
+	_msg.MsgID = field.NewInt32(tableName, "msg_id")
+	_msg.FromUserName = field.NewString(tableName, "from_user_name")
+	_msg.ToUserName = field.NewString(tableName, "to_user_name")
+	_msg.MsgType = field.NewInt32(tableName, "msg_type")
+	_msg.Content = field.NewString(tableName, "content")
+	_msg.Status = field.NewInt32(tableName, "status")
+	_msg.ImgStatus = field.NewInt32(tableName, "img_status")
+	_msg.ImgBufILen = field.NewInt32(tableName, "img_buf_i_len")
+	_msg.CreateTime = field.NewInt32(tableName, "create_time")
+	_msg.MsgSource = field.NewString(tableName, "msg_source")
+	_msg.PushContent = field.NewString(tableName, "push_content")
+	_msg.NewMsgID = field.NewInt32(tableName, "new_msg_id")
+	_msg.MsgSeq = field.NewInt32(tableName, "msg_seq")
+	_msg.Wxid = field.NewString(tableName, "wxid")
+	_msg.Appid = field.NewString(tableName, "appid")
+	_msg.TypeName = field.NewString(tableName, "type_name")
 
 	_msg.fillFieldMap()
 
@@ -88,22 +88,22 @@ func (m msg) As(alias string) *msg {
 func (m *msg) updateTableName(table string) *msg {
 	m.ALL = field.NewAsterisk(table)
 	m.ID = field.NewInt32(table, "id")
-	m.MsgID = field.NewInt32(table, "MsgId")
-	m.FromUserName = field.NewString(table, "FromUserName")
-	m.ToUserName = field.NewString(table, "ToUserName")
-	m.MsgType = field.NewInt32(table, "MsgType")
-	m.Content = field.NewString(table, "Content")
-	m.Status = field.NewInt32(table, "Status")
-	m.ImgStatus = field.NewInt32(table, "ImgStatus")
-	m.ImgBufILen = field.NewInt32(table, "ImgBuf_iLen")
-	m.CreateTime = field.NewInt32(table, "CreateTime")
-	m.MsgSource = field.NewString(table, "MsgSource")
-	m.PushContent = field.NewString(table, "PushContent")
-	m.NewMsgID = field.NewInt32(table, "NewMsgId")
-	m.MsgSeq = field.NewInt32(table, "MsgSeq")
-	m.Wxid = field.NewString(table, "Wxid")
-	m.Appid = field.NewString(table, "Appid")
-	m.TypeName = field.NewString(table, "TypeName")
+	m.MsgID = field.NewInt32(table, "msg_id")
+	m.FromUserName = field.NewString(table, "from_user_name")
+	m.ToUserName = field.NewString(table, "to_user_name")
+	m.MsgType = field.NewInt32(table, "msg_type")
+	m.Content = field.NewString(table, "content")
+	m.Status = field.NewInt32(table, "status")
+	m.ImgStatus = field.NewInt32(table, "img_status")
+	m.ImgBufILen = field.NewInt32(table, "img_buf_i_len")
+	m.CreateTime = field.NewInt32(table, "create_time")
+	m.MsgSource = field.NewString(table, "msg_source")
+	m.PushContent = field.NewString(table, "push_content")
+	m.NewMsgID = field.NewInt32(table, "new_msg_id")
+	m.MsgSeq = field.NewInt32(table, "msg_seq")
+	m.Wxid = field.NewString(table, "wxid")
+	m.Appid = field.NewString(table, "appid")
+	m.TypeName = field.NewString(table, "type_name")
 
 	m.fillFieldMap()
 
@@ -130,22 +130,22 @@ func (m *msg) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 func (m *msg) fillFieldMap() {
 	m.fieldMap = make(map[string]field.Expr, 17)
 	m.fieldMap["id"] = m.ID
-	m.fieldMap["MsgId"] = m.MsgID
-	m.fieldMap["FromUserName"] = m.FromUserName
-	m.fieldMap["ToUserName"] = m.ToUserName
-	m.fieldMap["MsgType"] = m.MsgType
-	m.fieldMap["Content"] = m.Content
-	m.fieldMap["Status"] = m.Status
-	m.fieldMap["ImgStatus"] = m.ImgStatus
-	m.fieldMap["ImgBuf_iLen"] = m.ImgBufILen
-	m.fieldMap["CreateTime"] = m.CreateTime
-	m.fieldMap["MsgSource"] = m.MsgSource
-	m.fieldMap["PushContent"] = m.PushContent
-	m.fieldMap["NewMsgId"] = m.NewMsgID
-	m.fieldMap["MsgSeq"] = m.MsgSeq
-	m.fieldMap["Wxid"] = m.Wxid
-	m.fieldMap["Appid"] = m.Appid
-	m.fieldMap["TypeName"] = m.TypeName
+	m.fieldMap["msg_id"] = m.MsgID
+	m.fieldMap["from_user_name"] = m.FromUserName
+	m.fieldMap["to_user_name"] = m.ToUserName
+	m.fieldMap["msg_type"] = m.MsgType
+	m.fieldMap["content"] = m.Content
+	m.fieldMap["status"] = m.Status
+	m.fieldMap["img_status"] = m.ImgStatus
+	m.fieldMap["img_buf_i_len"] = m.ImgBufILen
+	m.fieldMap["create_time"] = m.CreateTime
+	m.fieldMap["msg_source"] = m.MsgSource
+	m.fieldMap["push_content"] = m.PushContent
+	m.fieldMap["new_msg_id"] = m.NewMsgID
+	m.fieldMap["msg_seq"] = m.MsgSeq
+	m.fieldMap["wxid"] = m.Wxid
+	m.fieldMap["appid"] = m.Appid
+	m.fieldMap["type_name"] = m.TypeName
 }
 
 func (m msg) clone(db *gorm.DB) msg {

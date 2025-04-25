@@ -18,6 +18,8 @@ import (
 func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 	return &Query{
 		db:             db,
+		Chatroom:       newChatroom(db, opts...),
+		Member:         newMember(db, opts...),
 		Msg:            newMsg(db, opts...),
 		SqliteSequence: newSqliteSequence(db, opts...),
 	}
@@ -26,6 +28,8 @@ func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 type Query struct {
 	db *gorm.DB
 
+	Chatroom       chatroom
+	Member         member
 	Msg            msg
 	SqliteSequence sqliteSequence
 }
@@ -35,6 +39,8 @@ func (q *Query) Available() bool { return q.db != nil }
 func (q *Query) clone(db *gorm.DB) *Query {
 	return &Query{
 		db:             db,
+		Chatroom:       q.Chatroom.clone(db),
+		Member:         q.Member.clone(db),
 		Msg:            q.Msg.clone(db),
 		SqliteSequence: q.SqliteSequence.clone(db),
 	}
@@ -51,18 +57,24 @@ func (q *Query) WriteDB() *Query {
 func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 	return &Query{
 		db:             db,
+		Chatroom:       q.Chatroom.replaceDB(db),
+		Member:         q.Member.replaceDB(db),
 		Msg:            q.Msg.replaceDB(db),
 		SqliteSequence: q.SqliteSequence.replaceDB(db),
 	}
 }
 
 type queryCtx struct {
+	Chatroom       *chatroomDo
+	Member         *memberDo
 	Msg            *msgDo
 	SqliteSequence *sqliteSequenceDo
 }
 
 func (q *Query) WithContext(ctx context.Context) *queryCtx {
 	return &queryCtx{
+		Chatroom:       q.Chatroom.WithContext(ctx),
+		Member:         q.Member.WithContext(ctx),
 		Msg:            q.Msg.WithContext(ctx),
 		SqliteSequence: q.SqliteSequence.WithContext(ctx),
 	}

@@ -50,5 +50,6 @@ func (l *CallbackLogic) Callback(req *types.CallBackReq) error {
 		return err
 	}
 	l.svcCtx.MsgChannel <- msg
+	l.Info("%+v", msg)
 	return nil
 }

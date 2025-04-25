@@ -9,22 +9,22 @@ const TableNameMsg = "msg"
 // Msg mapped from table <msg>
 type Msg struct {
 	ID           int32  `gorm:"column:id;primaryKey" json:"id"`
-	MsgID        int32  `gorm:"column:MsgId" json:"MsgId"`
-	FromUserName string `gorm:"column:FromUserName" json:"FromUserName"`
-	ToUserName   string `gorm:"column:ToUserName" json:"ToUserName"`
-	MsgType      int32  `gorm:"column:MsgType" json:"MsgType"`
-	Content      string `gorm:"column:Content" json:"Content"`
-	Status       int32  `gorm:"column:Status" json:"Status"`
-	ImgStatus    int32  `gorm:"column:ImgStatus" json:"ImgStatus"`
-	ImgBufILen   int32  `gorm:"column:ImgBuf_iLen" json:"ImgBuf_iLen"`
-	CreateTime   int32  `gorm:"column:CreateTime" json:"CreateTime"`
-	MsgSource    string `gorm:"column:MsgSource" json:"MsgSource"`
-	PushContent  string `gorm:"column:PushContent" json:"PushContent"`
-	NewMsgID     int32  `gorm:"column:NewMsgId" json:"NewMsgId"`
-	MsgSeq       int32  `gorm:"column:MsgSeq" json:"MsgSeq"`
-	Wxid         string `gorm:"column:Wxid" json:"Wxid"`
-	Appid        string `gorm:"column:Appid" json:"Appid"`
-	TypeName     string `gorm:"column:TypeName" json:"TypeName"`
+	MsgID        int32  `gorm:"column:msg_id" json:"msg_id"`
+	FromUserName string `gorm:"column:from_user_name" json:"from_user_name"`
+	ToUserName   string `gorm:"column:to_user_name" json:"to_user_name"`
+	MsgType      int32  `gorm:"column:msg_type" json:"msg_type"`
+	Content      string `gorm:"column:content" json:"content"`
+	Status       int32  `gorm:"column:status" json:"status"`
+	ImgStatus    int32  `gorm:"column:img_status" json:"img_status"`
+	ImgBufILen   int32  `gorm:"column:img_buf_i_len" json:"img_buf_i_len"`
+	CreateTime   int32  `gorm:"column:create_time" json:"create_time"`
+	MsgSource    string `gorm:"column:msg_source" json:"msg_source"`
+	PushContent  string `gorm:"column:push_content" json:"push_content"`
+	NewMsgID     int32  `gorm:"column:new_msg_id" json:"new_msg_id"`
+	MsgSeq       int32  `gorm:"column:msg_seq" json:"msg_seq"`
+	Wxid         string `gorm:"column:wxid" json:"wxid"`
+	Appid        string `gorm:"column:appid" json:"appid"`
+	TypeName     string `gorm:"column:type_name" json:"type_name"`
 }
 
 // TableName Msg's table name
